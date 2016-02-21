@@ -95,7 +95,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time Stamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdU-im-215">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time Stamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdU-im-215">
                                                     <rect key="frame" x="85" y="31" width="214" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -127,6 +127,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="VdU-im-215" firstAttribute="top" secondItem="GEr-xd-8uR" secondAttribute="bottom" constant="2" id="5bT-iQ-evw"/>
                                                 <constraint firstAttribute="trailing" secondItem="GEr-xd-8uR" secondAttribute="trailing" constant="37" id="6Om-3p-qqW"/>
                                                 <constraint firstAttribute="bottom" secondItem="wSq-V9-koe" secondAttribute="bottom" constant="11" id="B74-GE-J14"/>
                                                 <constraint firstItem="uwZ-u4-8RV" firstAttribute="top" secondItem="xza-WI-kdB" secondAttribute="bottom" constant="8" id="GYz-eE-XON"/>
@@ -135,9 +136,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="uwZ-u4-8RV" secondAttribute="bottom" constant="13" id="M6y-cM-Wo6"/>
                                                 <constraint firstItem="GEr-xd-8uR" firstAttribute="top" secondItem="GvI-tX-kTb" secondAttribute="top" constant="8" id="Nhv-ti-BC0"/>
                                                 <constraint firstItem="xza-WI-kdB" firstAttribute="top" secondItem="slV-th-byr" secondAttribute="bottom" constant="8" id="O6b-0H-UjW"/>
-                                                <constraint firstAttribute="trailing" secondItem="VdU-im-215" secondAttribute="trailing" constant="21" id="Q8x-o4-4tK"/>
                                                 <constraint firstItem="slV-th-byr" firstAttribute="top" secondItem="GvI-tX-kTb" secondAttribute="top" constant="8" id="ULb-ct-tff"/>
-                                                <constraint firstItem="xza-WI-kdB" firstAttribute="top" secondItem="VdU-im-215" secondAttribute="bottom" constant="31" id="Z9v-TD-bZU"/>
+                                                <constraint firstItem="VdU-im-215" firstAttribute="leading" secondItem="slV-th-byr" secondAttribute="trailing" constant="8" id="bAi-Gr-s0A"/>
                                                 <constraint firstItem="slV-th-byr" firstAttribute="leading" secondItem="GvI-tX-kTb" secondAttribute="leading" constant="13" id="bcg-DI-OKo"/>
                                                 <constraint firstItem="jHG-u8-Kad" firstAttribute="top" secondItem="xza-WI-kdB" secondAttribute="bottom" constant="8" id="ekN-Q6-rtG"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ked-AZ-B17" secondAttribute="bottom" constant="11" id="fGt-mg-wVx"/>
