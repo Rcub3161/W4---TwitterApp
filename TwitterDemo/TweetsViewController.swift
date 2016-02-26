@@ -20,7 +20,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "refreshAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
 
         
