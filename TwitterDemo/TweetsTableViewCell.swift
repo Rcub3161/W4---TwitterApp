@@ -18,7 +18,9 @@ class TweetsTableViewCell: UITableViewCell {
     @IBOutlet weak var retweetsLabel: UILabel!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
-
+    
+    var tweetID: Int!
+    
     var tweet: Tweet! {
         didSet{
             userProfileImage.setImageWithURL(NSURL(string: (tweet.user?.newImageUrl)!)!)
@@ -27,6 +29,7 @@ class TweetsTableViewCell: UITableViewCell {
             timestampLabel.text = String(tweet.timestamp!)
             retweetsLabel.text = "Retweets: \(String(tweet.retweet_count))"
             favoritesLabel.text = "Favorites: \(String(tweet.favoritesCount))"
+            tweetID = tweet.id
             
         }
     }
@@ -49,13 +52,15 @@ class TweetsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func favButton(sender: AnyObject) {
-        print("faved!")
         if(tweet.favorited == true){
+            TwitterClient.sharedInstance.unfavorite(tweetID)
+            favoritesLabel.text = "Favorites: \(String(tweet.favoritesCount))"
+            tweet.favorited = false
             return;
         }
         else{
             tweet.favorited = true
-            tweet.favoritesCount++
+            TwitterClient.sharedInstance.favorite(tweetID)
             favoritesLabel.text = "Favorites: \(String(tweet.favoritesCount))"
             print("can't favorite")
         }
@@ -63,13 +68,17 @@ class TweetsTableViewCell: UITableViewCell {
     @IBAction func retweetButton(sender: AnyObject) {
         print("retweeted")
         if(tweet.retweeted == true){
+            TwitterClient.sharedInstance.untweet(tweetID)
+            tweet.retweet_count--
+            retweetsLabel.text = "Retweets: \(String(tweet.retweet_count))"
+            tweet.retweeted = false
             return;
         }
         else{
             tweet.retweeted = true
+            TwitterClient.sharedInstance.retweet(tweetID)
             tweet.retweet_count++
             retweetsLabel.text = "Retweets: \(String(tweet.retweet_count))"
-            print("can't retweet")
         }
     }
 

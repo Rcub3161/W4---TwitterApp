@@ -77,6 +77,40 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error)
         })
     }
+
+    func retweet(id: Int) {
+        POST("//api.twitter.com/1.1/statuses/retweet/\(id).json", parameters: nil, success: { (operation, response) -> Void in
+            print("success")
+            
+            }, failure: { (operation, error) -> Void in
+                print("error")
+        })
+    }
+    func untweet(id: Int) {
+        POST("1.1/statuses/unretweet/\(id).json", parameters: nil,  success: { (operation, response) -> Void in
+            print("succesfully untweeted")
+            }, failure: { (operation, error) -> Void in
+                print("error doing this")
+        })
+    }
+    
+    func favorite(id: Int) {
+        POST("https://api.twitter.com/1.1/favorites/create.json", parameters: ["id": id], success: { (operation, response) -> Void in
+            print("favorited")
+            
+            }, failure: { (operation, error) -> Void in
+                print("error")
+        })
+    }
+    
+    func unfavorite(id: Int) {
+        POST("https://api.twitter.com/1.1/favorites/destroy.json", parameters: ["id": id], success: { (operation, response) -> Void in
+            print("unfavorited")
+            }, failure: { (operation, error) -> Void in
+                print("error")
+        })
+    }
+    
     func currentAccount(success: (User) -> (), failure: (NSError) -> ()){
         GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task:NSURLSessionDataTask, response: AnyObject?) -> Void in
             let userDictionary = response as! NSDictionary

@@ -19,6 +19,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -63,6 +68,26 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else{
             return 0
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    
+    func refreshAction(refreshControl: UIRefreshControl) {
+        
+        TwitterClient.sharedInstance.homeTimeLine({ (tweets:[Tweet]) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            }, failure: {(error: NSError) -> () in
+                print(error.localizedDescription)
+        refreshControl.endRefreshing()
+        })
     }
     /*
     // MARK: - Navigation
