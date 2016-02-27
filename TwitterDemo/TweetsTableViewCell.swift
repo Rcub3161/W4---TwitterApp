@@ -31,13 +31,23 @@ class TweetsTableViewCell: UITableViewCell {
             favoritesLabel.text = "Favorites: \(String(tweet.favoritesCount))"
             tweetID = tweet.id
             
+            
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        userProfileImage.layer.cornerRadius = 3
         tweetTextLabel.preferredMaxLayoutWidth = tweetTextLabel.frame.size.width
+        
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: "imageViewTapped")
+        userProfileImage.addGestureRecognizer(tapGestureRecognizer)
         // Initialization code
+    }
+    
+    func imageViewTapped() {
+        
     }
 
     override func layoutSubviews() {
@@ -81,5 +91,7 @@ class TweetsTableViewCell: UITableViewCell {
             retweetsLabel.text = "Retweets: \(String(tweet.retweet_count))"
         }
     }
+    
+    
 
 }

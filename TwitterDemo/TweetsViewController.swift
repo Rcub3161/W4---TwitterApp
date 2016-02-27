@@ -88,7 +88,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error.localizedDescription)
         refreshControl.endRefreshing()
         })
+        refreshControl.endRefreshing()
     }
+
     /*
     // MARK: - Navigation
 
