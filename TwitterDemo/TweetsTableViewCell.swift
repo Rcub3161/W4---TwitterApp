@@ -40,15 +40,14 @@ class TweetsTableViewCell: UITableViewCell {
         userProfileImage.layer.cornerRadius = 3
         tweetTextLabel.preferredMaxLayoutWidth = tweetTextLabel.frame.size.width
         
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: "imageViewTapped")
-        userProfileImage.addGestureRecognizer(tapGestureRecognizer)
+
+        //userProfileImage.addGestureRecognizer(tapGestureRecognizer)
+        
+
+        //tapGestureRecognizer.numberOfTouches() = 1
         // Initialization code
     }
-    
-    func imageViewTapped() {
-        
-    }
+
 
     override func layoutSubviews() {
         super.layoutSubviews()

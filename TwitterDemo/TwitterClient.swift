@@ -29,7 +29,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             
             let url = NSURL(string:"https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")!
             UIApplication.sharedApplication().openURL(url)
-            
+            print("\(url)")
             }) { (error: NSError!) -> Void in
                 print("error: \(error.localizedDescription)")
                 self.loginFailure?(error)

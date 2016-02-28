@@ -53,12 +53,29 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as? TweetsTableViewCell
-        
+
         cell!.tweet = tweets[indexPath.row]
         cell!.selectionStyle = .None
+        
+        
+        
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: "imageViewTapped")
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        cell!.userProfileImage.addGestureRecognizer(tapGestureRecognizer)
+        cell!.userProfileImage.userInteractionEnabled = true
+        
+
+        
 
         
         return cell!
+    }
+    
+    func imageViewTapped() {
+        print("image tapped")
+        self.performSegueWithIdentifier("userProfileSegue", sender: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
