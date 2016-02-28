@@ -30,12 +30,13 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         fullNameLabel.text = user.name
         extraUsernameLabel.text = user.screenname
-        profileImage.setImageWithURL(NSURL(string: user.newImageUrl!)!)
+        profileImage.setImageWithURL(NSURL(string: user.backgroundImageUrl!)!)
+        backgroundImage.setImageWithURL(NSURL(string: user.newImageUrl!)!)
         numberTweetsLabel.text = String(user.tweetCount!)
         followingLabel.text = String(user.followingCount!)
         followersLabel.text = String(user.followersCount!)
         
-        TwitterClient.sharedInstance.homeTimeLine({ (tweets:[Tweet]) -> () in
+        TwitterClient.sharedInstance.userTimeLine({ (tweets:[Tweet]) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
             }, failure: {(error: NSError) -> () in
@@ -48,6 +49,17 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        TwitterClient.sharedInstance.userTimeLine({ (tweets:[Tweet]) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            }, failure: {(error: NSError) -> () in
+                print(error.localizedDescription)
+        })
+
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -67,7 +79,17 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             return 0
         }
     }
-    /*
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -75,6 +97,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+
 
 }

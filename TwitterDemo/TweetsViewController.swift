@@ -45,6 +45,16 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        TwitterClient.sharedInstance.homeTimeLine({ (tweets:[Tweet]) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            }, failure: {(error: NSError) -> () in
+                print(error.localizedDescription)
+        })
+
+    }
+    
 
     @IBAction func onLogoutButton(sender: AnyObject) {
         TwitterClient.sharedInstance.logout()
@@ -73,10 +83,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell!
     }
     
-    func imageViewTapped() {
-        print("image tapped")
-        self.performSegueWithIdentifier("userProfileSegue", sender: nil)
-    }
+
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,6 +93,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else{
             return 0
         }
+    }
+    
+    func imageViewTapped() {
+        print("image tapped")
+
+        self.performSegueWithIdentifier("userProfileSegue", sender: nil)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
