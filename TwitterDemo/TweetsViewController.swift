@@ -13,6 +13,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var tweets: [Tweet]!
     
+    var temp: Int = 0
+    
     @IBOutlet weak var tableView: UITableView!
     var selection: Tweet!
     
@@ -70,13 +72,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         
         let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: "imageViewTapped")
+        tapGestureRecognizer.addTarget(self, action: "imageViewTapped:")
         tapGestureRecognizer.numberOfTouchesRequired = 1
         tapGestureRecognizer.numberOfTapsRequired = 1
         cell!.userProfileImage.addGestureRecognizer(tapGestureRecognizer)
         cell!.userProfileImage.userInteractionEnabled = true
-        selection = tweets![indexPath.row]
-
+        //selection = tweets![indexPath.row]
+        cell!.userProfileImage.tag = indexPath.row
         
 
         
@@ -95,9 +97,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func imageViewTapped() {
+    func imageViewTapped(sender: AnyObject) {
         print("image tapped")
-
+        let tapView = sender.view as? UIImageView
+        temp = tapView!.tag
+        selection = tweets![temp]
+        
         self.performSegueWithIdentifier("userProfileSegue", sender: nil)
     }
     

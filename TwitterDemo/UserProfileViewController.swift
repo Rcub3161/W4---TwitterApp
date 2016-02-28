@@ -30,19 +30,19 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.dataSource = self
         fullNameLabel.text = user.name
         extraUsernameLabel.text = user.screenname
-        profileImage.setImageWithURL(NSURL(string: user.backgroundImageUrl!)!)
-        backgroundImage.setImageWithURL(NSURL(string: user.newImageUrl!)!)
+        profileImage.setImageWithURL(NSURL(string: user.newImageUrl!)!)
+        backgroundImage.setImageWithURL(NSURL(string: user.backgroundImageUrl!)!)
         numberTweetsLabel.text = String(user.tweetCount!)
         followingLabel.text = String(user.followingCount!)
         followersLabel.text = String(user.followersCount!)
         
-        TwitterClient.sharedInstance.userTimeLine({ (tweets:[Tweet]) -> () in
+        TwitterClient.sharedInstance.userTimeLine ((user.userID)!,
+            success: {(tweets: [Tweet]) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
             }, failure: {(error: NSError) -> () in
                 print(error.localizedDescription)
         })
-
         // Do any additional setup after loading the view.
     }
 
@@ -53,9 +53,10 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidAppear(animated: Bool) {
         
-        TwitterClient.sharedInstance.userTimeLine({ (tweets:[Tweet]) -> () in
-            self.tweets = tweets
-            self.tableView.reloadData()
+        TwitterClient.sharedInstance.userTimeLine ((user.userID)!,
+            success: {(tweets: [Tweet]) -> () in
+                self.tweets = tweets
+                self.tableView.reloadData()
             }, failure: {(error: NSError) -> () in
                 print(error.localizedDescription)
         })
