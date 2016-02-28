@@ -15,8 +15,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var extraUsernameLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var numberTweetsLabel: UILabel!
@@ -28,8 +28,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
 
         tableView.delegate = self
         tableView.dataSource = self
-        nameLabel.text = String(user.name)
-        usernameLabel.text = String(user.screenname)
+        fullNameLabel.text = user.name
+        extraUsernameLabel.text = user.screenname
         profileImage.setImageWithURL(NSURL(string: user.newImageUrl!)!)
         numberTweetsLabel.text = String(user.tweetCount!)
         followingLabel.text = String(user.followingCount!)
@@ -51,10 +51,12 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TweetsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell2", forIndexPath: indexPath) as? TweetsTableViewCell
         
-        cell.tweet = tweets[indexPath.row]
-        return cell
+        cell!.tweet = tweets[indexPath.row]
+        cell!.selectionStyle = .None
+    
+        return cell!
     }
     
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

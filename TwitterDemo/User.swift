@@ -10,8 +10,8 @@ import UIKit
 
 class User: NSObject {
 
-    var name: NSString?
-    var screenname: NSString?
+    var name: String?
+    var screenname: String?
     var newImageUrl: String?
     var profileUrl: NSURL?
     var tagline: NSString?
@@ -28,7 +28,7 @@ class User: NSObject {
         self.dictionary = dictionary
         
         name = dictionary["name"] as? String
-        screenname = dictionary["name"] as? String
+        screenname = dictionary["screen_name"] as? String
         newImageUrl = dictionary["profile_image_url_https"] as? String
         backgroundImageUrl = dictionary["profile_background_image_url"] as? String
         tweetCount = dictionary["statuses_count"] as? Int

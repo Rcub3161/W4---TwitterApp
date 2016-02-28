@@ -24,7 +24,7 @@ class TweetsTableViewCell: UITableViewCell {
     var tweet: Tweet! {
         didSet{
             userProfileImage.setImageWithURL(NSURL(string: (tweet.user?.newImageUrl)!)!)
-            usernameLabel.text = tweet.user?.name as? String
+            usernameLabel.text = tweet.user?.name
             tweetTextLabel.text = tweet.text as? String
             timestampLabel.text = String(tweet.timestamp!)
             retweetsLabel.text = "Retweets: \(String(tweet.retweet_count))"

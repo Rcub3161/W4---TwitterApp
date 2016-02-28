@@ -248,7 +248,7 @@
                                 <rect key="frame" x="-1" y="188" width="321" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserProfile" selectionStyle="default" indentationWidth="10" rowHeight="184" id="bwN-Ow-aOH" customClass="UserProfileTableViewCell" customModule="TwitterDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="UserProfile" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" rowHeight="184" id="bwN-Ow-aOH" customClass="TweetsTableViewCell" customModule="TwitterDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="321" height="184"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwN-Ow-aOH" id="aPF-er-1Q0">
@@ -322,8 +322,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="backgroundImage" destination="LLu-JZ-pO7" id="1IF-M9-tii"/>
+                        <outlet property="extraUsernameLabel" destination="p9l-86-NXD" id="dgY-8V-Tlu"/>
                         <outlet property="followersLabel" destination="Ise-LY-sOY" id="7EY-oT-fL0"/>
                         <outlet property="followingLabel" destination="qW4-3C-OLD" id="bP3-mX-WBJ"/>
+                        <outlet property="fullNameLabel" destination="6I7-LC-cXp" id="KUa-q5-flq"/>
                         <outlet property="nameLabel" destination="6I7-LC-cXp" id="slF-xp-VHb"/>
                         <outlet property="numberTweetsLabel" destination="IQh-nn-BvK" id="xOS-zA-NNR"/>
                         <outlet property="profileImage" destination="JDY-57-OoE" id="Gv0-8v-Ax7"/>

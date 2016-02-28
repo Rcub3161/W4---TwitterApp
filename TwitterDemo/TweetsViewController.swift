@@ -14,7 +14,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var tweets: [Tweet]!
     
     @IBOutlet weak var tableView: UITableView!
-
+    var selection: Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tapGestureRecognizer.numberOfTapsRequired = 1
         cell!.userProfileImage.addGestureRecognizer(tapGestureRecognizer)
         cell!.userProfileImage.userInteractionEnabled = true
-        
+        selection = tweets![indexPath.row]
 
         
 
@@ -77,6 +77,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print("image tapped")
         self.performSegueWithIdentifier("userProfileSegue", sender: nil)
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.tweets != nil {
@@ -108,14 +109,20 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         refreshControl.endRefreshing()
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let move = segue.destinationViewController
+        
+        if let move = move as? UserProfileViewController {
+            move.user = selection.user
+        }
+        
     }
-    */
+
 
 }
