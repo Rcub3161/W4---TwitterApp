@@ -135,6 +135,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return indexPath
         
     }
+    @IBAction func createTweet(sender: AnyObject) {
+    
+        
+    
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -149,7 +154,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         else if  let move = move as? TweetDetailViewController {
             move.tweet = selection
         }
-        
+        else if let move = move as? CreateTweetViewController {
+            move.user = selection.user
+        }
         
     }
 

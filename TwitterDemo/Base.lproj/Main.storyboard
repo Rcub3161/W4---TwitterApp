@@ -184,7 +184,14 @@
                                 <action selector="onLogoutButton:" destination="gKQ-NO-ohV" id="Lad-V1-c9h"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Create" id="cj0-tE-Hqh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="cj0-tE-Hqh">
+                            <connections>
+                                <action selector="createTweet:" destination="gKQ-NO-ohV" id="NKM-AH-GMf"/>
+                                <segue destination="8JB-6m-Xzi" kind="popoverPresentation" popoverAnchorBarButtonItem="cj0-tE-Hqh" id="QfH-hk-lX5">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -407,6 +414,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPd-LM-H6T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1737" y="235"/>
+        </scene>
+        <!--Create Tweet View Controller-->
+        <scene sceneID="eRU-Gn-Iwg">
+            <objects>
+                <viewController id="8JB-6m-Xzi" customClass="CreateTweetViewController" customModule="TwitterDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bWa-wJ-K46"/>
+                        <viewControllerLayoutGuide type="bottom" id="W7c-9j-ZCg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JOj-yK-4cY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jsk-RN-C1f">
+                                <rect key="frame" x="20" y="49" width="62" height="62"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uj-BE-PjS">
+                                <rect key="frame" x="90" y="49" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaJ-Ie-lQ9">
+                                <rect key="frame" x="90" y="78" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-gQ-ahZ">
+                                <rect key="frame" x="20" y="119" width="280" height="273"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="createTweetView" destination="bzf-gQ-ahZ" id="nYJ-XU-IyX"/>
+                        <outlet property="profileImage" destination="jsk-RN-C1f" id="TkR-rZ-JMu"/>
+                        <outlet property="realNameLabel" destination="2uj-BE-PjS" id="lsC-Xy-szK"/>
+                        <outlet property="usernameLabel" destination="iaJ-Ie-lQ9" id="bwM-qF-XfS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCT-gk-hyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="784" y="1133"/>
         </scene>
         <!--Tweet Detail View Controller-->
         <scene sceneID="hO0-nC-u5Z">
