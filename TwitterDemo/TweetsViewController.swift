@@ -85,7 +85,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell!
     }
     
-
+    
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,7 +127,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         refreshControl.endRefreshing()
     }
 
+     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
     
+        selection = tweets![indexPath.row]
+       // self.performSegueWithIdentifier("detailTweet", sender: nil)
+        
+        return indexPath
+        
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -139,6 +146,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let move = move as? UserProfileViewController {
             move.user = selection.user
         }
+        else if  let move = move as? TweetDetailViewController {
+            move.tweet = selection
+        }
+        
         
     }
 

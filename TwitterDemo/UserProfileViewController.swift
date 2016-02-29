@@ -35,14 +35,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         numberTweetsLabel.text = String(user.tweetCount!)
         followingLabel.text = String(user.followingCount!)
         followersLabel.text = String(user.followersCount!)
-        
+        if(user.userID != nil) {
         TwitterClient.sharedInstance.userTimeLine ((user.userID)!,
-            success: {(tweets: [Tweet]) -> () in
-            self.tweets = tweets
-            self.tableView.reloadData()
-            }, failure: {(error: NSError) -> () in
-                print(error.localizedDescription)
-        })
+             success: {(tweets: [Tweet]) -> () in
+             self.tweets = tweets
+             self.tableView.reloadData()
+             }, failure: {(error: NSError) -> () in
+                 print(error.localizedDescription)
+         })
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -52,15 +53,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-        TwitterClient.sharedInstance.userTimeLine ((user.userID)!,
-            success: {(tweets: [Tweet]) -> () in
-                self.tweets = tweets
-                self.tableView.reloadData()
-            }, failure: {(error: NSError) -> () in
-                print(error.localizedDescription)
-        })
-
+        if (user.userID != nil) {
+            TwitterClient.sharedInstance.userTimeLine ((user.userID)!,
+                success: {(tweets: [Tweet]) -> () in
+                    self.tweets = tweets
+                    self.tableView.reloadData()
+                }, failure: {(error: NSError) -> () in
+                    print(error.localizedDescription)
+            })
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
