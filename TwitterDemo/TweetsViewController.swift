@@ -155,7 +155,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             move.tweet = selection
         }
         else if let move = move as? CreateTweetViewController {
-            move.user = selection.user
+            move.user = User.currentUser
         }
         
     }

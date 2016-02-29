@@ -20,7 +20,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var numberTweetsLabel: UILabel!
-    
+    var userID: Int!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -35,6 +35,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         numberTweetsLabel.text = String(user.tweetCount!)
         followingLabel.text = String(user.followingCount!)
         followersLabel.text = String(user.followersCount!)
+        userID = user.userID
         if(user.userID != nil) {
         TwitterClient.sharedInstance.userTimeLine ((user.userID)!,
              success: {(tweets: [Tweet]) -> () in
@@ -44,6 +45,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                  print(error.localizedDescription)
          })
         }
+        //print(tweets)
+        print("UserID: \(userID)")
         // Do any additional setup after loading the view.
     }
 

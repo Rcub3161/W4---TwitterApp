@@ -32,7 +32,19 @@ class CreateTweetViewController: UIViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func tweetButton(sender: AnyObject) {
     
+        TwitterClient.sharedInstance.tweet(createTweetView.text)
+        dismissViewControllerAnimated(true) { () -> Void in
+        }
+    
+    }
+    
+    @IBAction func cancelButton(sender: AnyObject) {
+   
+     dismissViewControllerAnimated(true) { () -> Void in
+        }
+    }
 
     /*
     // MARK: - Navigation
